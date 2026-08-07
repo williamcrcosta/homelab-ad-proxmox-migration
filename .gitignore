@@ -1,0 +1,32 @@
+# Segredos e certificados
+*.key
+*.psk
+*.pfx
+*.p12
+*.pem
+*.cer
+*.crt
+secrets/
+private/
+
+# Backups e configurações integrais
+backups/
+*.clixml
+config.xml
+config-*.xml
+
+# Binários, imagens e logs
+*.iso
+*.msi
+*.zip
+*.tar
+*.tar.gz
+*.log
+*.pcap
+
+# Sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
