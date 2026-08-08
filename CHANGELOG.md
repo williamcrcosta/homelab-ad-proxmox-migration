@@ -34,8 +34,33 @@
 
 ### Pendente
 
-- Período de observação da replicação.
-- Auditoria pós-promoção completa.
-- Backup do novo DC.
-- Planejamento de FSMO e Microsoft Entra Connect.
+- Transferência faseada das funções FSMO.
+- Planejamento do Microsoft Entra Connect em mudança independente.
+- Planejamento de DNS scavenging em mudança independente.
 
+## 2026-08-08 — Estabilização, backup e preparação pré-FSMO
+
+### Validado
+
+- Operação simultânea de `SRVAD2022` e `SRVAD2025` por mais de dez horas.
+- DFSR `State 4`, `SysvolReady = 1` e compartilhamentos `SYSVOL`/`NETLOGON` nos dois DCs.
+- `dcdiag` de DNS, Advertising, SysVolCheck e NetLogons aprovado no `SRVAD2025`.
+- Replicação bidirecional dos cinco naming contexts com zero falhas.
+- Registros LDAP e Global Catalog publicados nos DNS `10.100.10.11` e `10.100.20.10`.
+- `nltest` para PDC, GC, canal seguro e registro DNS concluído com `NERR_Success`.
+- DNS Client do `SRVAD2025`: `10.100.10.11` preferencial e `10.100.20.10` alternativo.
+- BPA AD DS: 40 conformidades, zero avisos e zero erros.
+- BPA DNS: aviso de scavenging e regra de loopback documentados como não bloqueantes.
+
+### Backup
+
+- Backup online consistente da VM 750 com QEMU Guest Agent e `fs-freeze/fs-thaw`.
+- Backup cold da VM 750 concluído com a VM desligada.
+- Arquivos VMA/Zstandard armazenados fora do host Proxmox e validados.
+- System State do `SRVAD2025` concluído com NTDS, SYSVOL/DFSR e Registry.
+
+### Decisão
+
+- Manter Secure Boot desabilitado até janela de testes específica.
+- Manter CPU `x86-64-v2-AES`.
+- Transferir FSMO de forma faseada, mantendo o PDC Emulator por último.

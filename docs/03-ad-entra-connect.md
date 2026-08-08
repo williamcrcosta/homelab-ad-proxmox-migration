@@ -4,7 +4,8 @@
 
 - Domínio: `wcrpc.lan`.
 - Site: `Default-First-Site-Name`.
-- DC atual: `SRVAD2022` (`10.100.10.11`).
+- DC original: `SRVAD2022` (`10.100.10.11`), DNS, GC, Entra Connect e atual detentor dos cinco FSMO.
+- DC adicional: `SRVAD2025` (`10.100.20.10`), DNS e GC, com AD/SYSVOL saudáveis.
 - DC antigo: `SRVAD2019`, removido definitivamente.
 
 ## Limpeza realizada
@@ -26,5 +27,4 @@
 
 ## Restrição atual
 
-O Entra Connect permanece no `SRVAD2022`. Sua migração será tratada em mudança separada depois que o novo DC estiver estável.
-
+O Entra Connect permanece no `SRVAD2022`. Sua migração será tratada em mudança separada depois da transferência e estabilização dos FSMO. Não combinar migração do Entra Connect, transferência FSMO e despromoção do DC antigo na mesma janela.

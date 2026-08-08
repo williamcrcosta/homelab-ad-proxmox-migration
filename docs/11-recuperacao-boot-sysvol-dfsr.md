@@ -186,13 +186,12 @@ Estado final esperado e obtido:
 1. Observar replicação AD e DFSR por pelo menos 24 horas.
 2. Executar auditoria completa nos dois DCs.
 3. Confirmar DNS, GC, NTP, eventos e compartilhamentos.
-4. Configurar o DNS do `SRVAD2025` para operação com dois DCs.
-5. Validar backup do novo DC.
-6. Planejar transferência das funções FSMO.
+4. Configurar o DNS do `SRVAD2025` para operação com dois DCs. **Concluído.**
+5. Validar backup do novo DC. **Concluído.**
+6. Planejar transferência faseada das funções FSMO. **Concluído; execução pendente.**
 7. Planejar migração do Microsoft Entra Connect separadamente.
 
 ## Referências
 
 - [Microsoft — Force authoritative and non-authoritative synchronization for DFSR-replicated SYSVOL](https://learn.microsoft.com/en-us/troubleshoot/windows-server/group-policy/force-authoritative-non-authoritative-synchronization)
 - [Microsoft — Troubleshoot missing SYSVOL and Netlogon shares](https://learn.microsoft.com/en-us/troubleshoot/windows-server/networking/troubleshoot-missing-sysvol-and-netlogon-shares)
-

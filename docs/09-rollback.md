@@ -20,3 +20,12 @@
 - Não iniciar novamente um DC declarado permanentemente removido.
 - Não mover FSMO durante uma ocorrência sem diagnóstico.
 
+## Antes da transferência FSMO
+
+Foram criadas três camadas de recuperação para o `SRVAD2025`:
+
+1. backup snapshot consistente da VM no Proxmox;
+2. backup cold completo da VM;
+3. backup System State pelo Windows Server Backup.
+
+Em caso de falha após uma transferência normal, priorizar diagnóstico e transferência suportada de volta ao `SRVAD2022`, se ele continuar íntegro. Não restaurar simultaneamente dois controladores a estados antigos. Restauração de DC e System State deve seguir procedimento específico de recuperação do Active Directory.

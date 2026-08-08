@@ -2,7 +2,7 @@
 
 Documentação *as code* da migração controlada do domínio `wcrpc.lan`, preservando o Microsoft Entra Connect e mantendo possibilidade de rollback.
 
-> **Classificação:** repositório privado. Não armazenar senhas, PSKs, chaves, certificados, backups ou exports integrais de configuração.
+> **Classificação recomendada:** repositório privado. Se houver publicação temporária para revisão, não armazenar senhas, PSKs, usuários de serviço, chaves, certificados, backups, endereços públicos ou exports integrais de configuração.
 
 ## Objetivo
 
@@ -23,6 +23,8 @@ Documentação *as code* da migração controlada do domínio `wcrpc.lan`, prese
 | SRVAD2025 | `10.100.20.10` | DC adicional, DNS e GC; SYSVOL saudável |
 | IPsec | LAN10 ↔ LAN20 | Estabelecido |
 | Zabbix Agent 2 | SRVAD2025 | Instalado e ativo |
+| Backups pré-FSMO | Externo + System State | Concluídos e validados |
+| FSMO | SRVAD2022 | 5 funções; transferência ainda não iniciada |
 
 O `SRVAD2025`, executado no Proxmox, foi promovido com sucesso como controlador de domínio adicional do domínio `wcrpc.lan`.
 
@@ -32,6 +34,8 @@ Após a promoção, foram recuperados dois incidentes:
 - bloqueio da sincronização inicial do SYSVOL, resolvido com recuperação DFSR autoritativa no `SRVAD2022` e não autoritativa no `SRVAD2025`.
 
 Os dois controladores agora apresentam DFSR `State 4`, `SysvolReady = 1`, compartilhamentos `SYSVOL`/`NETLOGON` publicados e replicação do Active Directory saudável.
+
+Após mais de dez horas de operação simultânea, a auditoria final confirmou DNS, DC Locator, Global Catalog, canal seguro Netlogon e replicação bidirecional sem falhas. O BPA de AD DS retornou 40 conformidades e nenhuma falha. A mudança de FSMO será executada separadamente e de forma faseada.
 
 Consulte [Recuperação do boot e SYSVOL/DFSR](docs/11-recuperacao-boot-sysvol-dfsr.md) para o histórico completo e as evidências.
 
@@ -63,6 +67,9 @@ flowchart TD
 - [Validações](docs/08-validacoes.md)
 - [Rollback](docs/09-rollback.md)
 - [Próximos passos](docs/10-proximos-passos.md)
+- [Recuperação do boot e SYSVOL/DFSR](docs/11-recuperacao-boot-sysvol-dfsr.md)
+- [Backups pré-FSMO](docs/12-backups-pre-fsmo.md)
+- [Plano de transferência FSMO faseada](docs/13-fsmo-faseado.md)
 
 ## Decisões técnicas
 
@@ -71,8 +78,8 @@ flowchart TD
 - [ADR-003: IPsec entre pfSense](decisions/ADR-003-ipsec-entre-pfsense.md)
 - [ADR-004: Zabbix Agent 2 ativo](decisions/ADR-004-zabbix-agent2-ativo.md)
 - [ADR-005: modelo de CPU do Windows Server 2025](decisions/ADR-005-modelo-cpu-windows-server-2025.md)
+- [ADR-006: recuperar ou reconstruir o SRVAD2025](decisions/ADR-006-recover-or-rebuild-srvad2025.md)
 
 ## Regra de mudança
 
 Cada etapa deve ter: pré-requisitos, execução, evidências, critério de sucesso e rollback. Alterações destrutivas só acontecem depois de validação e backup.
-

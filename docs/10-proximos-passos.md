@@ -1,13 +1,20 @@
 # Próximos passos
 
-- [ ] Confirmar métricas do `SRVAD2025` no Zabbix.
-- [ ] Instalar AD DS e DNS.
-- [ ] Executar pré-check da promoção.
-- [ ] Promover como DC adicional e Catálogo Global.
-- [ ] Validar replicação AD, DNS e SYSVOL.
-- [ ] Ajustar DNS dos dois DCs conforme boas práticas.
-- [ ] Monitorar por período de estabilização.
-- [ ] Planejar FSMO em mudança separada.
+- [x] Confirmar métricas do `SRVAD2025` no Zabbix.
+- [x] Instalar AD DS e DNS.
+- [x] Executar pré-check da promoção.
+- [x] Promover como DC adicional e Catálogo Global.
+- [x] Recuperar e validar replicação AD, DNS e SYSVOL.
+- [x] Ajustar DNS do `SRVAD2025` para os dois DNS internos.
+- [x] Monitorar por período inicial de estabilização.
+- [x] Criar e validar backup snapshot, cold e System State.
+- [x] Executar BPA de AD DS e DNS.
+- [x] Planejar FSMO em mudança separada e faseada.
+- [ ] Transferir Schema Master e validar.
+- [ ] Transferir Domain Naming Master e validar.
+- [ ] Transferir Infrastructure Master e validar.
+- [ ] Transferir RID Master e validar.
+- [ ] Transferir PDC Emulator por último, ajustar NTP e validar.
 - [ ] Planejar Entra Connect em mudança separada.
 - [ ] Planejar retirada ou migração definitiva do VMware.
-
+- [ ] Avaliar DNS scavenging em mudança independente.

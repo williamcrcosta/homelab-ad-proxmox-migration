@@ -1,6 +1,6 @@
-# ADR-005 — Recuperar ou reconstruir o SRVAD2025
+# ADR-006 — Recuperar ou reconstruir o SRVAD2025
 
-- **Status:** Proposed
+- **Status:** Aceito e concluído
 - **Data:** 2026-08-07
 - **Incidente:** INC-20260807
 
@@ -36,22 +36,16 @@ O `SRVAD2025` foi promovido com sucesso como DC adicional e GC, porém não inic
 - a VM antiga nunca poderá voltar à rede depois da limpeza;
 - DNS, Sites and Services e replicação precisam ser validados após a remoção.
 
-## Recomendação preliminar
-
-Se todos os FSMO estiverem no `SRVAD2022` e não houver dados exclusivos no `SRVAD2025`, favorecer **Opção B — reconstruir**, após aprovação explícita e backup validado.
-
 ## Decisão
 
-Preencher:
+Foi escolhida a **Opção A — recuperar a instalação**, pois o banco do AD estava replicando, o DCPROMO havia concluído e os cinco FSMO continuavam no `SRVAD2022`.
 
-- opção escolhida;
-- responsável;
-- data/hora;
-- justificativa;
-- riscos aceitos;
-- plano de rollback aplicável.
+A recuperação preservou a identidade do DC e permitiu diagnosticar separadamente boot e SYSVOL.
 
 ## Resultado
 
-Preencher após a execução e vincular ao commit correspondente.
-
+- Boot recuperado após trocar `cpu: host` por `x86-64-v2-AES`.
+- SYSVOL recuperado com sincronização DFSR autoritativa no `SRVAD2022` e não autoritativa no `SRVAD2025`.
+- DFSR `State 4`, SYSVOL/NETLOGON publicados e `dcdiag` aprovado.
+- Replicação bidirecional concluída com zero falhas.
+- Nenhuma limpeza de metadados ou reconstrução foi necessária.
