@@ -20,9 +20,10 @@ Documentação *as code* da migração controlada do domínio `wcrpc.lan`, prese
 | pfSense antigo | WAN `.15`, LAN `10.100.10.1/24` | Operacional |
 | pfSense novo | WAN `.16`, LAN `10.100.20.1/24` | Operacional |
 | SRVAD2022 | `10.100.10.11` | DC/DNS e Entra Connect |
-| SRVAD2025 | `10.100.20.10` | Membro do domínio; promoção pendente |
+| SRVAD2025 | `10.100.20.10` | DC adicional, DNS e GC; SYSVOL saudável |
 | IPsec | LAN10 ↔ LAN20 | Estabelecido |
 | Zabbix Agent 2 | SRVAD2025 | Instalado e ativo |
+
 O `SRVAD2025`, executado no Proxmox, foi promovido com sucesso como controlador de domínio adicional do domínio `wcrpc.lan`.
 
 Após a promoção, foram recuperados dois incidentes:
@@ -33,8 +34,6 @@ Após a promoção, foram recuperados dois incidentes:
 Os dois controladores agora apresentam DFSR `State 4`, `SysvolReady = 1`, compartilhamentos `SYSVOL`/`NETLOGON` publicados e replicação do Active Directory saudável.
 
 Consulte [Recuperação do boot e SYSVOL/DFSR](docs/11-recuperacao-boot-sysvol-dfsr.md) para o histórico completo e as evidências.
-
-
 
 ## Arquitetura transitória
 
@@ -71,6 +70,7 @@ flowchart TD
 - [ADR-002: LAN isolada no vmbr10](decisions/ADR-002-lan-isolada-vmbr10.md)
 - [ADR-003: IPsec entre pfSense](decisions/ADR-003-ipsec-entre-pfsense.md)
 - [ADR-004: Zabbix Agent 2 ativo](decisions/ADR-004-zabbix-agent2-ativo.md)
+- [ADR-005: modelo de CPU do Windows Server 2025](decisions/ADR-005-modelo-cpu-windows-server-2025.md)
 
 ## Regra de mudança
 
