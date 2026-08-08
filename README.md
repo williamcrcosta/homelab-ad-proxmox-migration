@@ -23,6 +23,18 @@ Documentação *as code* da migração controlada do domínio `wcrpc.lan`, prese
 | SRVAD2025 | `10.100.20.10` | Membro do domínio; promoção pendente |
 | IPsec | LAN10 ↔ LAN20 | Estabelecido |
 | Zabbix Agent 2 | SRVAD2025 | Instalado e ativo |
+O `SRVAD2025`, executado no Proxmox, foi promovido com sucesso como controlador de domínio adicional do domínio `wcrpc.lan`.
+
+Após a promoção, foram recuperados dois incidentes:
+
+- ciclo de reinicialização causado pela combinação da VM com `cpu: host`, resolvido com `x86-64-v2-AES`;
+- bloqueio da sincronização inicial do SYSVOL, resolvido com recuperação DFSR autoritativa no `SRVAD2022` e não autoritativa no `SRVAD2025`.
+
+Os dois controladores agora apresentam DFSR `State 4`, `SysvolReady = 1`, compartilhamentos `SYSVOL`/`NETLOGON` publicados e replicação do Active Directory saudável.
+
+Consulte [Recuperação do boot e SYSVOL/DFSR](docs/11-recuperacao-boot-sysvol-dfsr.md) para o histórico completo e as evidências.
+
+
 
 ## Arquitetura transitória
 
