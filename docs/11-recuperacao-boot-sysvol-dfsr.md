@@ -53,9 +53,11 @@ Foram validados:
 
 Não foram encontradas corrupções no sistema de arquivos, component store ou arquivos protegidos.
 
-#### Causa operacional identificada
+### Causa operacional identificada
 
-O modelo de CPU `host` utilizado pela VM provocava incompatibilidade durante a inicialização do Windows Server 2025 após a promoção.
+A falha apresentou correlação operacional com o modelo de CPU `host`. A substituição por `x86-64-v2-AES` restaurou a inicialização da VM.
+
+A causa-raiz definitiva não foi comprovada; portanto, a alteração do modelo de CPU deve ser registrada como a mitigação que resolveu o incidente.
 
 Correção aplicada no Proxmox:
 
