@@ -29,3 +29,5 @@ Foram criadas três camadas de recuperação para o `SRVAD2025`:
 3. backup System State pelo Windows Server Backup.
 
 Em caso de falha após uma transferência normal, priorizar diagnóstico e transferência suportada de volta ao `SRVAD2022`, se ele continuar íntegro. Não restaurar simultaneamente dois controladores a estados antigos. Restauração de DC e System State deve seguir procedimento específico de recuperação do Active Directory.
+
+O backup operacional mais recente da VM 750 está sob o storage `backup-750-srvad2025`. Os System States ficam em subdiretórios datados dentro de `750-srvad2025`. Antes de restaurar, confirmar a integridade do arquivo, isolar a VM restaurada e definir se a recuperação do AD será autoritativa ou não autoritativa.

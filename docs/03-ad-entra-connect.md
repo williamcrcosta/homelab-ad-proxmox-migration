@@ -24,6 +24,9 @@
 - Microsoft Entra Connect atualizado.
 - Scheduler ativo, staging desativado e execuções concluídas com sucesso.
 - Connect Health voltou a registrar o servidor como saudável após correção do agente.
+- Em 2026-08-16, um certificado expirado do antigo agente ADFS/PolicyKeyService foi exportado para contingência e removido do repositório `LocalMachine\\My`.
+- Após a limpeza, os serviços `ADSync`, `AzureADConnectAgentUpdater` e `AzureADConnectHealthAgent` permaneceram ativos, o teste do Connect Health foi aprovado e um ciclo Delta concluiu todas as etapas com `success`.
+- Nenhum novo evento 64 de AutoEnrollment foi registrado na janela de validação.
 
 ## Restrição atual
 

@@ -23,7 +23,7 @@ Documentação *as code* da migração controlada do domínio `wcrpc.lan`, prese
 | SRVAD2025 | `10.100.20.10` | DC adicional, DNS e GC; SYSVOL saudável |
 | IPsec | LAN10 ↔ LAN20 | Estabelecido |
 | Zabbix Agent 2 | SRVAD2025 | Instalado e ativo |
-| Backups pré-FSMO | Externo + System State | Concluídos e validados |
+| Backups pré-FSMO | SMB externo + System State | Atualizados em 2026-08-16 e validados |
 | FSMO | SRVAD2022 | 5 funções; transferência ainda não iniciada |
 
 O `SRVAD2025`, executado no Proxmox, foi promovido com sucesso como controlador de domínio adicional do domínio `wcrpc.lan`.
@@ -70,6 +70,7 @@ flowchart TD
 - [Recuperação do boot e SYSVOL/DFSR](docs/11-recuperacao-boot-sysvol-dfsr.md)
 - [Backups pré-FSMO](docs/12-backups-pre-fsmo.md)
 - [Plano de transferência FSMO faseada](docs/13-fsmo-faseado.md)
+- [Armazenamento de backup SMB por guest](docs/14-backup-storage-smb.md)
 
 ## Decisões técnicas
 
@@ -79,6 +80,7 @@ flowchart TD
 - [ADR-004: Zabbix Agent 2 ativo](decisions/ADR-004-zabbix-agent2-ativo.md)
 - [ADR-005: modelo de CPU do Windows Server 2025](decisions/ADR-005-modelo-cpu-windows-server-2025.md)
 - [ADR-006: recuperar ou reconstruir o SRVAD2025](decisions/ADR-006-recover-or-rebuild-srvad2025.md)
+- [ADR-007: backup SMB por guest e evolução para PBS](decisions/ADR-007-backup-smb-por-guest.md)
 
 ## Regra de mudança
 

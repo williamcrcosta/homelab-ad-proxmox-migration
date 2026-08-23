@@ -41,3 +41,23 @@ Critérios:
 
 - A regra de loopback permaneceu reportada mesmo com DNS remoto preferencial e o IP local como alternativo. A configuração foi mantida porque DNS, DC Locator, GC, Netlogon e replicação foram aprovados.
 - Scavenging desabilitado será tratado em mudança futura; não é bloqueador para FSMO.
+
+## Revalidação — 2026-08-16
+
+- Serviços `NTDS`, `DNS`, `DFSR`, `Netlogon`, `KDC` e `W32Time` em execução.
+- DFSR/SYSVOL permaneceu em `State 4`.
+- `dcdiag` de Advertising, DNS, SysVolCheck e NetLogons aprovado.
+- `repadmin /replsummary` retornou zero falhas.
+- Novo backup da VM 750 e novo System State concluídos e catalogados.
+- Entra Connect: ciclo Delta e conectividade do Health Agent aprovados após limpeza de certificado expirado.
+
+## Validação do storage externo
+
+```bash
+pvesm status | grep backup-750-srvad2025
+pvesm list backup-750-srvad2025 --content backup | grep 750
+findmnt /mnt/pve/backup-750-srvad2025
+journalctl -k --since "-10 minutes" --no-pager | grep -Ei 'CIFS|PVE-BACKUP'
+```
+
+Critério: storage ativo, backups listados, origem CIFS correta e nenhum erro CIFS novo.

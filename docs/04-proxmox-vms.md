@@ -30,5 +30,8 @@
 - Backup cold adicional, executado com a VM desligada.
 - Destino externo via SMB, fora do storage local do Proxmox.
 - Arquivos compactados com Zstandard e submetidos a teste de integridade.
+- Storage atual: `backup-750-srvad2025`, via CIFS `PVE-BACKUP`, subdiretório `/750-srvad2025`.
 
 Os backups não devem ser versionados no Git.
+
+Consulte [Armazenamento de backup SMB por guest](14-backup-storage-smb.md) para a estrutura, validações e plano de evolução.

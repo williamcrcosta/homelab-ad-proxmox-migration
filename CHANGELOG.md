@@ -1,5 +1,28 @@
 # Changelog
 
+## 2026-08-16 a 2026-08-21 — Backups, Entra Connect e storage SMB
+
+### Backup
+
+- Nova cópia da VM 750 concluída em 2026-08-16, com 18.660.430.139 bytes e teste `zstd -t` aprovado.
+- Novo System State catalogado como versão `08/16/2026-04:45`, contendo AD/NTDS, SYSVOL, Registry e volumes de sistema.
+- Backups de 2026-08-08 preservados.
+
+### Storage
+
+- Compartilhamento consolidado como `PVE-BACKUP`, com raiz local `D:\pve-backup`.
+- Estrutura padronizada por guest; VM 750 em `750-srvad2025`.
+- Storage Proxmox ativo como `backup-750-srvad2025`.
+- Compartilhamento antigo `PVE-SRVAD2025`, mount residual e diretório vazio removidos.
+- Erro recorrente de reconexão CIFS ao compartilhamento antigo deixou de ocorrer após a limpeza.
+- Capacidade disponível ficou próxima de 120 GiB; expansão e retenção permanecem pendentes.
+
+### Active Directory e Entra Connect
+
+- Saúde do `SRVAD2025` revalidada após atualização: serviços ativos, DFSR `State 4`, `dcdiag` aprovado e replicação sem falhas.
+- Certificado expirado do antigo agente ADFS/PolicyKeyService removido após exportação de contingência.
+- Connect Health aprovado, serviços ativos e ciclo Delta concluído com sucesso.
+
 ## 2026-08-07
 
 - Limpeza do controlador antigo `SRVAD2019` concluída.
